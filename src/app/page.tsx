@@ -1,10 +1,5 @@
-import PrimeiroComponente from "@/app/components/primeiroComponente";
+import GalleryPage from "@/app/gallery/page";
 
 export default function Home() {
-  return (
-    <div>
-      Hello World!
-      <PrimeiroComponente />
-    </div>
-  );
+  return <GalleryPage />;
 }
