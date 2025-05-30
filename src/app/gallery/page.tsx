@@ -1,11 +1,15 @@
 import Template from "@/app/components/template";
-import Header from "@/app/components/utils/header";
+import { ImageCard } from "@/app/components/utils/imageCard";
 
 export default function GalleryPage() {
   return (
     <Template>
-      <Header />
-      <h1 className="text-3xl text-red-500">Teste de template</h1>
+      <h1 className="text-3xl">Teste de template</h1>
+      <ImageCard />
+      <ImageCard />
+      <ImageCard />
+      <ImageCard />
+      <ImageCard />
     </Template>
   );
 }
