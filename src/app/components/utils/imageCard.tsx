@@ -1,22 +1,33 @@
-export const ImageCard = ({ image }: any) => {
+import ImageCardProps from "@/types/imageCardProps";
+
+export const ImageCard = ({
+  title,
+  description,
+  dataUpload,
+  src,
+}: ImageCardProps) => {
   return (
     <div
       className={
-        "card relative rounded-sm bg-white shadow-md transition-transform duration-300 " +
+        "card relative mb-2 overflow-hidden rounded-md bg-white shadow-sm transition-transform duration-250 " +
         "ease-in-out hover:-translate-y-1 hover:shadow-lg"
       }
     >
       <img
-        className={"h-56 w-full rounded-t-md object-cover"}
-        src={"/money-trees.jpg"}
+        className={"h-58 w-full rounded-t-md object-cover"}
+        src={src}
+        alt={"Imagem de teste"}
       />
       <div className={"card-body p-4"}>
-        <h5 className={"text-md mb-2 font-semibold text-gray-500"}>
-          {" "}
-          Nome da imagem{" "}
+        <h5 className={"mb-2 text-lg font-semibold text-gray-700"}>
+          {""}
+          Nome da imagem: {title}
         </h5>
-        <p className={"mb-4 text-sm text-gray-700"}> Descrição da imagem </p>
-        <p className={"mb-4 text-sm text-gray-500"}> Data da imagem </p>
+        <p className={"text-md mb-1 text-gray-500"}>Descrição: {description}</p>
+        <p className={"text-md mb-1 text-gray-500"}>
+          Data de upload:{" "}
+          {dataUpload ? dataUpload.toLocaleDateString() : "Data não informada"}
+        </p>
       </div>
     </div>
   );
