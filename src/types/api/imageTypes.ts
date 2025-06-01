@@ -23,6 +23,10 @@ class ImageClass implements ImageData {
     this.url = data.url;
     this.extension = data.extension;
   }
+
+  createImage(dataArray: ImageData[]): ImageClass[] {
+    return dataArray.map((data: ImageData) => new ImageClass(data));
+  }
 }
 
 export default ImageClass;

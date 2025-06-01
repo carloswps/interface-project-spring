@@ -1,11 +1,6 @@
 import ImageCardProps from "@/types/imageCardProps";
 
-export const ImageCard = ({
-  title,
-  description,
-  dataUpload,
-  src,
-}: ImageCardProps) => {
+export const ImageCard = ({ title, tags, dataUpload, src }: ImageCardProps) => {
   return (
     <div
       className={
@@ -14,16 +9,15 @@ export const ImageCard = ({
       }
     >
       <img
-        className={"h-58 w-full rounded-t-md object-cover"}
+        className={"h-58 w-full rounded-t-md object-cover object-center"}
         src={src}
-        alt={"Imagem de teste"}
+        alt={"Imagem da galeria"}
       />
       <div className={"card-body p-4"}>
         <h5 className={"mb-2 text-lg font-semibold text-gray-700"}>
-          {""}
           Nome da imagem: {title}
         </h5>
-        <p className={"text-md mb-1 text-gray-500"}>Descrição: {description}</p>
+        <p className={"text-md mb-1 text-gray-500"}>Descrição: {tags}</p>
         <p className={"text-md mb-1 text-gray-500"}>
           Data de upload:{" "}
           {dataUpload ? dataUpload.toLocaleDateString() : "Data não informada"}

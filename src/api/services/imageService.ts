@@ -1,12 +1,27 @@
 import ImageClass from "@/types/api/imageTypes";
+import React from "react";
 
 class ImageService {
-  baseUrl = process.env["BASE_URL "];
+  baseUrl = "http://localhost:8080/v1/images";
 
   async getImages(): Promise<ImageClass[]> {
-    const response = await fetch(`${this.baseUrl}/images`);
-    return response.json();
+    if (!this.baseUrl)
+      throw new Error(
+        "Base URL not found. Please, set the BASE_URL environment variable.",
+      );
+    try {
+      const response = await fetch(this.baseUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch images: ${response.statusText}`);
+      }
+      return response.json();
+    } catch (error) {
+      console.error("Error fetching images:", error);
+      throw error;
+    }
   }
 }
 
-export const useImageService = () => new ImageService();
+export const useImageService = () => {
+  return React.useMemo(() => new ImageService(), []);
+};

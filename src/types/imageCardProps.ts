@@ -1,9 +1,9 @@
 type ImageCardProps = {
   width?: number;
   title?: string;
-  description?: string;
+  tags?: string;
   dataUpload?: Date;
-  src: string;
+  src: string | undefined;
 };
 
 export default ImageCardProps;
