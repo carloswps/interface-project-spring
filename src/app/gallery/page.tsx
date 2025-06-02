@@ -4,7 +4,7 @@ import Template from "@/app/components/template";
 import { ImageCard } from "@/app/components/utils/imageCard";
 import { useImageService } from "@/api/services/imageService";
 import { useEffect, useState } from "react";
-import ImageClass from "@/types/api/imageTypes";
+import ImageClass, { ImageEntity } from "@/types/api/imageTypes";
 
 export default function GalleryPage() {
   const userImager = useImageService();
@@ -34,7 +34,7 @@ export default function GalleryPage() {
         Gallery Page
       </h1>
       <section className={"grid grid-cols-3 gap-6"}>
-        {images.map((image: ImageClass) => (
+        {images.map((image: ImageEntity) => (
           <ImageCard
             src={image.url}
             title={image.name}

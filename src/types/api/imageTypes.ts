@@ -1,7 +1,27 @@
-interface ImageData {
+export interface ImageData {
+  id?: string;
   name: string;
   description?: string;
-  uploadDate: Date;
+  uploadDate: Date | string;
+  size?: number;
+  url?: string;
+  extension: string;
+  imageEntity: Array<{
+    id?: string;
+    name: string;
+    description?: string;
+    uploadDate: Date | string;
+    size?: number;
+    url?: string;
+    extension: string;
+  }>;
+}
+
+export interface ImageEntity {
+  id?: string;
+  name: string;
+  description?: string;
+  uploadDate: Date | string;
   size?: number;
   url?: string;
   extension: string;
@@ -14,14 +34,28 @@ class ImageClass implements ImageData {
   size?: number;
   url?: string;
   extension: string;
+  imageEntity: ImageEntity[];
 
   constructor(data: ImageData) {
+    if (!data) {
+      throw new Error("Image data is required.");
+    }
+
     this.name = data.name;
     this.description = data.description;
-    this.uploadDate = data.uploadDate;
+    this.uploadDate = new Date(data.uploadDate);
     this.size = data.size;
     this.url = data.url;
     this.extension = data.extension;
+    this.imageEntity = data.imageEntity.map((imgEntity) => ({
+      id: imgEntity.id,
+      name: imgEntity.name,
+      description: imgEntity.description,
+      uploadDate: new Date(imgEntity.uploadDate),
+      size: imgEntity.size,
+      url: imgEntity.url,
+      extension: imgEntity.extension,
+    }));
   }
 
   createImage(dataArray: ImageData[]): ImageClass[] {

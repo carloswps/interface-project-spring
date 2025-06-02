@@ -2,7 +2,7 @@ import ImageClass from "@/types/api/imageTypes";
 import React from "react";
 
 class ImageService {
-  baseUrl = "http://localhost:8080/v1/images";
+  baseUrl = process.env.BASE_URL;
 
   async getImages(): Promise<ImageClass[]> {
     if (!this.baseUrl)
@@ -10,7 +10,7 @@ class ImageService {
         "Base URL not found. Please, set the BASE_URL environment variable.",
       );
     try {
-      const response = await fetch(this.baseUrl);
+      const response = await fetch(`${this.baseUrl}/images`);
       if (!response.ok) {
         throw new Error(`Failed to fetch images: ${response.statusText}`);
       }

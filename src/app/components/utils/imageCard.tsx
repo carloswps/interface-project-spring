@@ -11,7 +11,7 @@ export const ImageCard = ({ title, tags, dataUpload, src }: ImageCardProps) => {
       <img
         className={"h-58 w-full rounded-t-md object-cover object-center"}
         src={src}
-        alt={"Imagem da galeria"}
+        alt={"Imagem teste"}
       />
       <div className={"card-body p-4"}>
         <h5 className={"mb-2 text-lg font-semibold text-gray-700"}>

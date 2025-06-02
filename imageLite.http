@@ -1,0 +1,7 @@
+### GET request to example server
+GET https://httpbin.org/image/png
+Accept: image/png
+
+
+###
+
