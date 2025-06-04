@@ -2,7 +2,7 @@ import ImageClass from "@/types/api/imageTypes";
 import React from "react";
 
 class ImageService {
-  baseUrl = process.env.BASE_URL;
+  baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   async getImages(): Promise<ImageClass[]> {
     if (!this.baseUrl)

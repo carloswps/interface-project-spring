@@ -1,26 +1,26 @@
 export interface ImageData {
   id?: string;
   name: string;
-  description?: string;
   uploadDate: Date | string;
   size?: number;
   url?: string;
   extension: string;
+  tag?: string;
   imageEntity: Array<{
     id?: string;
     name: string;
-    description?: string;
     uploadDate: Date | string;
     size?: number;
     url?: string;
     extension: string;
+    tags?: string;
   }>;
 }
 
 export interface ImageEntity {
   id?: string;
   name: string;
-  description?: string;
+  tag?: string;
   uploadDate: Date | string;
   size?: number;
   url?: string;
@@ -29,7 +29,6 @@ export interface ImageEntity {
 
 class ImageClass implements ImageData {
   name: string;
-  description?: string;
   uploadDate: Date;
   size?: number;
   url?: string;
@@ -42,7 +41,6 @@ class ImageClass implements ImageData {
     }
 
     this.name = data.name;
-    this.description = data.description;
     this.uploadDate = new Date(data.uploadDate);
     this.size = data.size;
     this.url = data.url;
@@ -50,11 +48,11 @@ class ImageClass implements ImageData {
     this.imageEntity = data.imageEntity.map((imgEntity) => ({
       id: imgEntity.id,
       name: imgEntity.name,
-      description: imgEntity.description,
       uploadDate: new Date(imgEntity.uploadDate),
       size: imgEntity.size,
       url: imgEntity.url,
       extension: imgEntity.extension,
+      tag: imgEntity.tags,
     }));
   }
 

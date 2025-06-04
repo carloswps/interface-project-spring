@@ -11,9 +11,12 @@ export default function GalleryPage() {
   const [images, setImages] = useState<ImageClass[]>([]);
 
   const searchImages = async () => {
-    const resultImages = await userImager.getImages();
-    setImages(resultImages);
-    console.log(resultImages);
+    try {
+      const resultImages = await userImager.getImages();
+      setImages(resultImages);
+    } catch (error) {
+      console.log("Error getting images:", error);
+    }
   };
 
   useEffect(() => {
@@ -34,14 +37,19 @@ export default function GalleryPage() {
         Gallery Page
       </h1>
       <section className={"grid grid-cols-3 gap-6"}>
-        {images.map((image: ImageEntity) => (
-          <ImageCard
-            src={image.url}
-            title={image.name}
-            tags={image.description}
-            dataUpload={new Date(image.uploadDate)}
-          />
-        ))}
+        {images.map(
+          (image: ImageEntity) => (
+            console.log("image", image.size),
+            (
+              <ImageCard
+                src={image.url}
+                title={image.name}
+                size={image.size}
+                dataUpload={new Date(image.uploadDate)}
+              />
+            )
+          ),
+        )}
       </section>
     </Template>
   );
