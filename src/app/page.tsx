@@ -1,5 +1,11 @@
 import GalleryPage from "@/app/gallery/page";
+import { Suspense } from "react";
+import Loading from "@/app/components/utils/loading";
 
 export default function Home() {
-  return <GalleryPage />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <GalleryPage />
+    </Suspense>
+  );
 }

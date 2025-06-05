@@ -1,7 +1,7 @@
 import ImageClass from "@/types/api/imageTypes";
 
 export async function fetchImages(): Promise<ImageClass[]> {
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = process.env.NEXT_PUBLIC_BASE_URL2;
   const delay = (ms: number) => {
     new Promise((resolve) => setTimeout(resolve, ms));
   };
