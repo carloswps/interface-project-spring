@@ -2,55 +2,59 @@
 
 import Template from "@/app/components/template";
 import { ImageCard } from "@/app/components/utils/imageCard";
-import { useImageService } from "@/api/services/imageService";
-import { useEffect, useState } from "react";
-import ImageClass, { ImageEntity } from "@/types/api/imageTypes";
+import { useCallback, useEffect, useState } from "react";
+import { ImageEntity } from "@/types/api/imageTypes";
+import { fetchImages } from "@/api/services/fetchImages";
+import Loading from "@/app/components/utils/loading";
+import ErrorComponent from "@/app/components/utils/errorComponent";
 
 export default function GalleryPage() {
-  const userImager = useImageService();
-  const [images, setImages] = useState<ImageClass[]>([]);
+  const [images, setImages] = useState<ImageEntity[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>("");
 
-  const searchImages = async () => {
+  const searchImages = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const resultImages = await userImager.getImages();
+      const resultImages = await fetchImages();
       setImages(resultImages);
     } catch (error) {
-      console.log("Error getting images:", error);
+      setError("Failed to fetch images, Please try again later.");
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     searchImages();
-  }, []);
+  }, [searchImages]);
 
   return (
     <Template>
-      <button
-        className={
-          "h-auto w-auto cursor-pointer rounded-full bg-gray-700 p-2 text-3xl"
-        }
-        onClick={searchImages}
-      >
-        Teste
-      </button>
-      <h1 className="mb-4 text-center text-3xl font-semibold text-gray-700">
-        Gallery Page
-      </h1>
-      <section className={"grid grid-cols-3 gap-6"}>
-        {images.map(
-          (image: ImageEntity) => (
-            console.log("image", image.size),
-            (
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <ErrorComponent />
+      ) : (
+        <>
+          <h1 className="mb-4 text-center text-3xl font-semibold text-gray-700">
+            Gallery Page
+          </h1>
+          <section className={"grid grid-cols-3 gap-6"}>
+            {images.map((image: ImageEntity) => (
               <ImageCard
+                key={image.id}
                 src={image.url}
                 title={image.name}
                 size={image.size}
                 dataUpload={new Date(image.uploadDate)}
               />
-            )
-          ),
-        )}
-      </section>
+            ))}
+          </section>
+        </>
+      )}
     </Template>
   );
 }
