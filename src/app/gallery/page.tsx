@@ -22,7 +22,6 @@ export default function GalleryPage() {
       setImages(resultImages);
     } catch (error) {
       setError("Failed to fetch images, Please try again later.");
-      console.error(error);
     } finally {
       setLoading(false);
     }

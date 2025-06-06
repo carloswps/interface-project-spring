@@ -6,7 +6,6 @@ import SearchProps from "@/types/actionButtons/SeachProps";
 
 export default function Search({ onSearch }: SearchProps) {
   const [query, setQuery] = useState<string>("");
-  const [selectedFormat, setSelectedFormat] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [extension, setExtension] = useState<string>("");
 
@@ -15,12 +14,12 @@ export default function Search({ onSearch }: SearchProps) {
       e.preventDefault();
       try {
         setIsSearching(true);
-        await onSearch(query, selectedFormat);
+        await onSearch(query, extension);
       } finally {
         setIsSearching(false);
       }
     },
-    [onSearch, query],
+    [onSearch, query, extension],
   );
   return (
     <form onSubmit={handleSubmit} className={"flex-center align-center mb-4 flex justify-center"}>
@@ -39,11 +38,11 @@ export default function Search({ onSearch }: SearchProps) {
             className={
               "rounded-lg border border-gray-400 bg-gray-100 px-5 py-2.5 text-sm text-gray-900 transition-colors outline-none"
             }
-            value={selectedFormat}
-            onChange={(e) => setSelectedFormat(e.target.value)}
+            value={extension}
+            onChange={(e) => setExtension(e.target.value)}
           >
             <option value="">Todos os formatos</option>
-            <option value="jpg">JPG</option>
+            <option value="jpeg">JPEG</option>
             <option value="png">PNG</option>
             <option value="gif">GIF</option>
           </select>
