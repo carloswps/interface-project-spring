@@ -5,21 +5,22 @@ import Loading from "@/app/components/utils/loading";
 import SearchProps from "@/types/actionButtons/SeachProps";
 
 export default function Search({ onSearch }: SearchProps) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [selectedFormat, setSelectedFormat] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [extension, setExtension] = useState<string>("");
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
       try {
         setIsSearching(true);
-        await onSearch();
+        await onSearch(query, selectedFormat);
       } finally {
         setIsSearching(false);
       }
     },
-    [onSearch],
+    [onSearch, query],
   );
   return (
     <form onSubmit={handleSubmit} className={"flex-center align-center mb-4 flex justify-center"}>
@@ -31,8 +32,8 @@ export default function Search({ onSearch }: SearchProps) {
             className={
               "block w-full truncate rounded-lg border border-gray-400 bg-gray-100 p-2.5 text-sm text-gray-900 placeholder:text-gray-400"
             }
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <select
             className={

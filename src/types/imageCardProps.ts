@@ -5,6 +5,7 @@ type ImageCardProps = {
   dataUpload?: Date;
   src: string | undefined;
   size?: number | undefined;
+  extension?: "png" | "jpg" | "jpeg" | string;
 };
 
 export default ImageCardProps;

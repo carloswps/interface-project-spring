@@ -14,11 +14,11 @@ export default function GalleryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>("");
 
-  const searchImages = useCallback(async () => {
+  const searchImages = useCallback(async (query: string, extension: string) => {
     setLoading(true);
     setError(null);
     try {
-      const resultImages = await fetchImages();
+      const resultImages = await fetchImages(query, extension);
       setImages(resultImages);
     } catch (error) {
       setError("Failed to fetch images, Please try again later.");
@@ -29,7 +29,7 @@ export default function GalleryPage() {
   }, []);
 
   useEffect(() => {
-    searchImages();
+    searchImages("", "");
   }, [searchImages]);
 
   return (
@@ -45,10 +45,11 @@ export default function GalleryPage() {
           <section className={"grid grid-cols-3 gap-6"}>
             {images.map((image: ImageEntity) => (
               <ImageCard
-                key={image.id}
+                key={image.url}
                 src={image.url}
                 title={image.name}
                 size={image.size}
+                extension={image.extension}
                 dataUpload={new Date(image.uploadDate)}
               />
             ))}

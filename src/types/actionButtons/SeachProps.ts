@@ -1,5 +1,5 @@
 type SearchProps = {
-  onSearch: () => Promise<void>;
+  onSearch: (query: string, selectedFormat: string) => Promise<void>;
 };
 
 export default SearchProps;
