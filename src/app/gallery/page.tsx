@@ -5,7 +5,7 @@ import { ImageCard } from "@/app/components/utils/imageCard";
 import { ImageEntity } from "@/types/api/imageTypes";
 import Loading from "@/app/components/utils/loading";
 import ErrorComponent from "@/app/components/utils/errorComponent";
-import Search from "@/app/components/ui/search";
+import Buttons from "@/app/components/ui/buttons";
 import { useCallback, useEffect, useState } from "react";
 import { fetchImages } from "@/api/services/fetchImages";
 
@@ -40,7 +40,7 @@ export default function GalleryPage() {
       ) : (
         <>
           <h1 className="mb-4 text-center text-3xl font-semibold text-gray-700">Gallery Page</h1>
-          <Search onSearch={searchImages} />
+          <Buttons onSearch={searchImages} />
           <section className={"grid grid-cols-3 gap-6"}>
             {images.map((image: ImageEntity) => (
               <ImageCard

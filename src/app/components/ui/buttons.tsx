@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import Loading from "@/app/components/utils/loading";
 import SearchProps from "@/types/actionButtons/SeachProps";
 
-export default function Search({ onSearch }: SearchProps) {
+export default function Buttons({ onSearch }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [isSearching, setIsSearching] = useState(false);
   const [extension, setExtension] = useState<string>("");
