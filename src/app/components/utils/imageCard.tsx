@@ -1,16 +1,9 @@
 import ImageCardProps from "@/types/imageCardProps";
-import DownloadButton from "@/app/components/ui/downloadButton";
-import { useState } from "react";
+import { DownloadButton } from "@/app/components/ui/downloadButton";
 
 export const ImageCard = ({ title, size, dataUpload, src, extension }: ImageCardProps) => {
-  const [showDownloadButton, setShowDownloadButton] = useState(true);
-  const handleImageClick = () => {
-    setShowDownloadButton(false);
-  };
-
   return (
     <div
-      onClick={handleImageClick}
       className={
         "card relative mb-2 overflow-hidden rounded-md bg-white shadow-sm transition-transform duration-250 " +
         "ease-in-out hover:-translate-y-1 hover:shadow-lg"
@@ -28,7 +21,7 @@ export const ImageCard = ({ title, size, dataUpload, src, extension }: ImageCard
         <p className={"text-md mb-1 text-gray-500"}>
           Data de upload: {dataUpload ? dataUpload.toLocaleDateString() : "Data não informada"}
         </p>
-        {showDownloadButton ? "Deseja realizar o download da imagem?" : <DownloadButton />}
+        <DownloadButton src={src} title={title} />
       </div>
     </div>
   );
