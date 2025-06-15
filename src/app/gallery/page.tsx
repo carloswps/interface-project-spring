@@ -1,11 +1,11 @@
 "use client";
 
-import Template from "@/app/components/template";
-import { ImageCard } from "@/app/components/utils/imageCard";
+import Template from "@/components/template";
+import { ImageCard } from "@/components/utils/imageCard";
 import { ImageEntity } from "@/types/api/imageTypes";
-import Loading from "@/app/components/utils/loading";
-import ErrorComponent from "@/app/components/utils/errorComponent";
-import Buttons from "@/app/components/ui/buttons";
+import Loading from "@/components/utils/loading";
+import ErrorComponent from "@/components/utils/errorComponent";
+import Buttons from "@/components/ui/buttons";
 import { useCallback, useEffect, useState } from "react";
 import { fetchImages } from "@/api/services/fetchImages";
 

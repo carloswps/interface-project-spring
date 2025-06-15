@@ -1,5 +1,5 @@
 import ImageCardProps from "@/types/imageCardProps";
-import { DownloadButton } from "@/app/components/ui/downloadButton";
+import { DownloadButton } from "@/components/ui/downloadButton";
 
 export const ImageCard = ({ title, size, dataUpload, src, extension }: ImageCardProps) => {
   return (
@@ -19,7 +19,8 @@ export const ImageCard = ({ title, size, dataUpload, src, extension }: ImageCard
         <p className={"text-md mb-1 text-gray-500"}>Tamanho da imagem: {size}</p>
         <p className={"text-md mb-1 text-gray-500"}>Formato da imagem: {extension} </p>
         <p className={"text-md mb-1 text-gray-500"}>
-          Data de upload: {dataUpload ? dataUpload.toLocaleDateString() : "Data não informada"}
+          Data de upload:{" "}
+          {dataUpload ? dataUpload.toLocaleDateString("pt-BR") : "Data não informada"}
         </p>
         <DownloadButton src={src} title={title} />
       </div>

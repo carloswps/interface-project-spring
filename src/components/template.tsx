@@ -1,6 +1,6 @@
 import TemplateProps from "@/types/templateProps";
-import Header from "@/app/components/utils/header";
-import Footer from "@/app/components/utils/footer";
+import Header from "@/components/utils/header";
+import Footer from "@/components/utils/footer";
 
 export const Template = ({ children }: TemplateProps) => {
   return (

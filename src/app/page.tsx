@@ -1,6 +1,6 @@
 import GalleryPage from "@/app/gallery/page";
 import { Suspense } from "react";
-import Loading from "@/app/components/utils/loading";
+import Loading from "@/components/utils/loading";
 
 export default function Home() {
   return (
